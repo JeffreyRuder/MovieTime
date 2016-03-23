@@ -14,4 +14,22 @@
         android:layout_height="wrap_content"
         android:id="@+id/hello"
         android:text="Hello World!" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:id="@+id/submitButton"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:hint="Enter A Search Query"
+        android:id="@+id/queryInputEditText"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_above="@+id/submitButton"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

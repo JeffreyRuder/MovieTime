@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Movie Time</string>
+
+    <string name="poster_url">http://image.tmdb.org/t/p/w150%s</string>
 </resources>
