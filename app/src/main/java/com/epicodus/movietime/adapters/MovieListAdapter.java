@@ -55,6 +55,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         @Bind(R.id.movieTitle) TextView mMovieTitle;
         @Bind(R.id.movieReleaseDate) TextView mMovieReleaseDate;
         @Bind(R.id.movieRatingBar) RatingBar mMovieRatingBar;
+        @Bind(R.id.overviewSnippet) TextView mOverviewSnippet;
 
         private Context mContext;
 
@@ -87,7 +88,11 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
             }
             mMovieTitle.setText(movie.getTitle());
             mMovieReleaseDate.setText(movie.getReleaseDate());
-//            Put first part of overview here
+            if (movie.getOverview().length() > 80) {
+                mOverviewSnippet.setText(movie.getOverview().substring(0, 80) + "...");
+            } else {
+                mOverviewSnippet.setText(movie.getOverview());
+            }
             if (movie.getVoteCount() > 0) {
                 mMovieRatingBar.setRating(movie.getVoteAverage()/2);
             } else {
