@@ -19,9 +19,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import info.movito.themoviedbapi.model.MovieDb;
 
-/**
- * Created by Guest on 3/23/16.
- */
+
 public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.MovieViewHolder> {
     private List<MovieDb> mMovies;
     private Context mContext;
@@ -66,9 +64,9 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
             Resources res = mContext.getResources();
 
             if (movie.getPosterPath() != null) {
-                Picasso.with(mContext).load(String.format(res.getString(R.string.poster_url), movie.getPosterPath())).into(mPosterImage);
+                Picasso.with(mContext).load(String.format(res.getString(R.string.poster_url), movie.getPosterPath())).fit().centerCrop().into(mPosterImage);
             } else {
-                Picasso.with(mContext).load(R.drawable.no_image).into(mPosterImage);
+                Picasso.with(mContext).load(R.drawable.no_image).fit().centerCrop().into(mPosterImage);
             }
             mMovieTitle.setText(movie.getTitle());
             mMovieReleaseDate.setText(movie.getReleaseDate());

@@ -1,6 +1,7 @@
 package com.epicodus.movietime.ui;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ public class MovieListActivity extends AppCompatActivity {
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
 
     private MovieListAdapter mAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,10 +47,12 @@ public class MovieListActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(List<MovieDb> result) {
             mAdapter = new MovieListAdapter(getApplicationContext(), result);
+
             mRecyclerView.setAdapter(mAdapter);
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MovieListActivity.this);
             mRecyclerView.setLayoutManager(layoutManager);
             mRecyclerView.setHasFixedSize(true);
+            mRecyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), R.drawable.divider_shape));
         }
     }
 }
