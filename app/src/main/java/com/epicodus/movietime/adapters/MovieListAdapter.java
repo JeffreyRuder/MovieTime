@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-//import com.epicodus.movietime.services.GenreBuilder;
 import com.epicodus.movietime.R;
 import com.squareup.picasso.Picasso;
 
@@ -53,7 +52,6 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         @Bind(R.id.posterImage) ImageView mPosterImage;
         @Bind(R.id.movieTitle) TextView mMovieTitle;
         @Bind(R.id.movieReleaseDate) TextView mMovieReleaseDate;
-        @Bind(R.id.movieGenre) TextView mMovieGenre;
         @Bind(R.id.movieRatingBar) RatingBar mMovieRatingBar;
 
         private Context mContext;
@@ -74,7 +72,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
             }
             mMovieTitle.setText(movie.getTitle());
             mMovieReleaseDate.setText(movie.getReleaseDate());
-//            mMovieGenre.setText(GenreBuilder.getTopTwoGenres(movie));
+//            Put first part of overview here
             if (movie.getVoteCount() > 0) {
                 mMovieRatingBar.setRating(movie.getVoteAverage()/2);
             } else {

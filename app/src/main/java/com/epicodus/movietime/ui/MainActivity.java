@@ -9,10 +9,12 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.epicodus.movietime.R;
 import com.epicodus.movietime.services.SearchService;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private final String TAG = this.getClass().getSimpleName();
     @Bind(R.id.queryInputEditText) EditText mQueryInputEditText;
     @Bind(R.id.submitButton) Button mSubmitButton;
+    @Bind(R.id.backgroundImageView) ImageView mBackgroundImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return false;
             }
         });
+
+        Picasso.with(this).load(R.drawable.background).fit().centerCrop().into(mBackgroundImageView);
     }
 
     @Override
