@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.epicodus.movietime.GenreBuilder;
+//import com.epicodus.movietime.services.GenreBuilder;
 import com.epicodus.movietime.R;
 import com.squareup.picasso.Picasso;
 
