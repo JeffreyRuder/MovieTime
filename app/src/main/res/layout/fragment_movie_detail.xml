@@ -43,11 +43,10 @@
                 android:layout_height="wrap_content"
                 android:text="4.5/5"
                 android:id="@+id/ratingTextView"
-                android:layout_alignTop="@+id/movieNameTextView"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
                 android:textColor="@color/accent"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/releaseDateTextView" />
 
             <TextView
                 android:layout_width="wrap_content"
