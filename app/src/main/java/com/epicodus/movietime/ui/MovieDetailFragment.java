@@ -65,6 +65,8 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
         mMovieNameTextView.setText(mMovie.getTitle());
         if (mMovie.getBackdropPath() != null) {
             Picasso.with(view.getContext()).load(String.format(res.getString(R.string.backdrop_url), mMovie.getBackdropPath())).fit().centerCrop().into(mMovieBackdropImageView);
+        } else if (mMovie.getPosterPath() != null) {
+            Picasso.with(view.getContext()).load(String.format(res.getString(R.string.backdrop_url), mMovie.getPosterPath())).into(mMovieBackdropImageView);
         } else {
             Picasso.with(view.getContext()).load(R.drawable.no_image).into(mMovieBackdropImageView);
         }
