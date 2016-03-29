@@ -100,4 +100,10 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
             }
         }
     }
+
+    public void addMovies(List<MovieDb> newMovies) {
+        int currentSize = mMovies.size();
+        mMovies.addAll(newMovies);
+        notifyItemRangeInserted(currentSize, newMovies.size());
+    }
 }
