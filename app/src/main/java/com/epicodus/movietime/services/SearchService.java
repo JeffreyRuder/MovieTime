@@ -10,6 +10,7 @@ import info.movito.themoviedbapi.TmdbApi;
 import info.movito.themoviedbapi.TmdbMovies;
 import info.movito.themoviedbapi.TmdbSearch;
 import info.movito.themoviedbapi.model.MovieDb;
+import info.movito.themoviedbapi.model.MovieImages;
 import info.movito.themoviedbapi.model.core.MovieResultsPage;
 
 public class SearchService {
@@ -23,6 +24,12 @@ public class SearchService {
         TmdbSearch searcher = new TmdbSearch(api);
         MovieResultsPage resultsPage = searcher.searchMovie(searchQuery, searchYear, LANGUAGE, INCLUDE_ADULT, pageNumber);
         return resultsPage.getResults();
+    }
+
+    public static MovieImages getImages(int id) {
+        TmdbApi api = new TmdbApi(API_KEY);
+        TmdbMovies movies = new TmdbMovies(api);
+        return movies.getImages(id, "en");
     }
 
 }

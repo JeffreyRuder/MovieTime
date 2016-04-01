@@ -2,6 +2,7 @@
     <string name="app_name">Movie Time</string>
 
     <string name="poster_url">http://image.tmdb.org/t/p/w150%s</string>
+    <string name="poster_url_big">http://image.tmdb.org/t/p/w500%s</string>
 
     <string name="backdrop_url">http://image.tmdb.org/t/p/w500%s</string>
 

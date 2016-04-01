@@ -78,19 +78,29 @@
                 android:paddingBottom="20dp">
 
                 <ScrollView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/scrollView">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="Overview"
-                        android:id="@+id/overviewTextView"
-                        android:textColor="@color/primaryText"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="10dp" />
+                        android:id="@+id/scrollLinearLayout"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Overview"
+                            android:id="@+id/overviewTextView"
+                            android:textColor="@color/primaryText"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="10dp" />
+
+
+                    </LinearLayout>
+
                 </ScrollView>
 
             </LinearLayout>

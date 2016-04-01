@@ -19,7 +19,9 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import info.movito.themoviedbapi.TmdbMovies;
 import info.movito.themoviedbapi.model.MovieDb;
+import info.movito.themoviedbapi.model.config.TmdbConfiguration;
 
 public class MovieListActivity extends AppCompatActivity {
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
@@ -75,7 +77,6 @@ public class MovieListActivity extends AppCompatActivity {
     private class GetMovieTask extends AsyncTask<TaskParams, Void, List<MovieDb>> {
         @Override
         protected List<MovieDb> doInBackground(TaskParams... params) {
-            Log.v("Getting page", params[0].page + "");
             List<MovieDb> movies = SearchService.movieSearch(params[0].query, 0, params[0].page);
             return movies;
         }

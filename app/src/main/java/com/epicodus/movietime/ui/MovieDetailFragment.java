@@ -6,30 +6,36 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.CursorAdapter;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.epicodus.movietime.R;
+import com.epicodus.movietime.adapters.MovieListAdapter;
+import com.epicodus.movietime.services.SearchService;
 import com.squareup.picasso.Picasso;
 
 import org.apache.commons.lang3.ObjectUtils;
 
+import java.util.List;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import info.movito.themoviedbapi.model.MovieDb;
+import info.movito.themoviedbapi.model.MovieImages;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class MovieDetailFragment extends Fragment implements View.OnClickListener {
     @Bind(R.id.movieNameTextView) TextView mMovieNameTextView;
     @Bind(R.id.movieBackdropImageView) ImageView mMovieBackdropImageView;
@@ -37,8 +43,10 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
     @Bind(R.id.ratingTextView) TextView mRatingTextView;
     @Bind(R.id.overviewTextView) TextView mOverviewTextView;
     @Bind(R.id.inviteFriendButton) Button mInviteFriendButton;
+    @Bind(R.id.scrollLinearLayout) LinearLayout mScrollLinearLayout;
 
     private MovieDb mMovie;
+    private MovieImages mImages;
     private static final int PICK_CONTACT_REQUEST = 1;
 
     public static MovieDetailFragment newInstance(MovieDb movie) {
@@ -53,6 +61,9 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mMovie = (MovieDb) getArguments().getSerializable("movie");
+
+        new GetImagesTask().execute(mMovie);
+
     }
 
 
@@ -123,4 +134,36 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
         startActivity(intent);
     }
 
+    private class GetImagesTask extends AsyncTask<MovieDb, Void, MovieImages> {
+        @Override
+        protected MovieImages doInBackground(MovieDb... params) {
+            MovieImages images = SearchService.getImages(params[0].getId());
+            return images;
+        }
+
+        @Override
+        protected void onPostExecute(MovieImages result) {
+            int size = result.getPosters().size();
+            for (int i = 0; i < 10; i ++) {
+                if (size > 0 && size > i) {
+
+                    Object object = result.getPosters().get(i);
+
+                    ImageView imageView = new ImageView(getContext());
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.WRAP_CONTENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT);
+                    params.setMargins(0, 0, 0, 48);
+                    imageView.setLayoutParams(params);
+                    mScrollLinearLayout.addView(imageView);
+
+                    Resources res = getResources();
+                    Picasso.with(getContext())
+                            .load(String.format(res.getString(R.string.poster_url_big), result.getPosters().get(i).getFilePath()))
+                            .into(imageView);
+
+                }
+            }
+        }
+    }
 }
