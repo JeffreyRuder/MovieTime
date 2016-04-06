@@ -24,6 +24,7 @@ import android.widget.TextView;
 
 import com.epicodus.movietime.R;
 import com.epicodus.movietime.adapters.MovieListAdapter;
+import com.epicodus.movietime.adapters.MoviePagerAdapter;
 import com.epicodus.movietime.services.SearchService;
 import com.squareup.picasso.Picasso;
 
@@ -44,6 +45,7 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
     @Bind(R.id.overviewTextView) TextView mOverviewTextView;
     @Bind(R.id.inviteFriendButton) Button mInviteFriendButton;
     @Bind(R.id.scrollLinearLayout) LinearLayout mScrollLinearLayout;
+    @Bind(R.id.posterButton) Button mPosterButton;
 
     private MovieDb mMovie;
     private MovieImages mImages;
@@ -61,11 +63,8 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mMovie = (MovieDb) getArguments().getSerializable("movie");
-
         new GetImagesTask().execute(mMovie);
-
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -89,6 +88,18 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
         }
         mOverviewTextView.setText(mMovie.getOverview());
         mInviteFriendButton.setOnClickListener(this);
+
+        mPosterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MoviePosterActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("MovieImages", mImages);
+                intent.putExtra("PosterBundle", bundle);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 
@@ -142,27 +153,12 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
         }
 
         @Override
-        protected void onPostExecute(MovieImages result) {
+        protected void onPostExecute(final MovieImages result) {
             int size = result.getPosters().size();
-            for (int i = 0; i < 10; i ++) {
-                if (size > 0 && size > i) {
-
-                    Object object = result.getPosters().get(i);
-
-                    ImageView imageView = new ImageView(getContext());
-                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                            LinearLayout.LayoutParams.WRAP_CONTENT,
-                            LinearLayout.LayoutParams.WRAP_CONTENT);
-                    params.setMargins(0, 0, 0, 48);
-                    imageView.setLayoutParams(params);
-                    mScrollLinearLayout.addView(imageView);
-
-                    Resources res = getResources();
-                    Picasso.with(getContext())
-                            .load(String.format(res.getString(R.string.poster_url_big), result.getPosters().get(i).getFilePath()))
-                            .into(imageView);
-
-                }
+            mImages = result;
+            if (result.getPosters().size() > 0) {
+                mPosterButton.setVisibility(View.VISIBLE);
+                mPosterButton.setEnabled(true);
             }
         }
     }
