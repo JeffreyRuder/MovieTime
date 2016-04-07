@@ -1,132 +1,123 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.epicodus.movietime.ui.MovieDetailFragment">
+    tools:context="com.epicodus.movietime.ui.MovieDetailFragment"
+    android:orientation="vertical"
+    android:background="@color/primaryLight">
 
-
-    <LinearLayout
-        android:orientation="vertical"
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/primaryLight">
+        android:layout_height="180dp"
+        android:id="@+id/movieBackdropImageView"
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/movie_backdrop_image"
+        android:adjustViewBounds="true"/>
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:id="@+id/movieBackdropImageView"
-            android:scaleType="centerCrop"
-            android:adjustViewBounds="true"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:paddingTop="20dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="20dp">
 
-        <RelativeLayout
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/movie_title"
+            android:id="@+id/movieNameTextView"
+            android:layout_alignParentStart="true"
+            android:textSize="16sp"
+            android:textColor="@color/primaryDark"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/numerical_rating"
+            android:id="@+id/ratingTextView"
+            android:textColor="@color/accent"
+            android:textStyle="bold"
+            android:layout_below="@+id/releaseDateTextView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/release_date"
+            android:id="@+id/releaseDateTextView"
+            android:layout_below="@+id/movieNameTextView"
+            android:layout_alignParentStart="true"
+            android:textColor="@color/secondaryText"
+            android:textStyle="italic" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/posters"
+            android:layout_margin="6dp"
+            android:id="@+id/posterButton"
+            android:backgroundTint="@color/accent"
+            android:enabled="false"
+            android:visibility="gone"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/white"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_above="@+id/inviteFriendButton"
+            android:paddingLeft="30dp"
             android:paddingTop="20dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:paddingRight="30dp"
             android:paddingBottom="20dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Star Wars: Episode I: The Phantom Menace"
-                android:clickable="true"
-                android:onClick="onClick"
-                android:id="@+id/movieNameTextView"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:textSize="16sp"
-                android:textColor="@color/primaryDark"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="4.5/5"
-                android:id="@+id/ratingTextView"
-                android:textColor="@color/accent"
-                android:textStyle="bold"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/releaseDateTextView" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Something Something 1999"
-                android:id="@+id/releaseDateTextView"
-                android:layout_below="@+id/movieNameTextView"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:textColor="@color/secondaryText"
-                android:textStyle="italic" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Poster"
-                android:id="@+id/posterButton"
-                android:enabled="false"
-                android:visibility="gone"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <LinearLayout
-                android:orientation="vertical"
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_above="@+id/inviteFriendButton"
-                android:paddingLeft="30dp"
-                android:paddingTop="20dp"
-                android:paddingRight="30dp"
-                android:paddingBottom="20dp">
+                android:id="@+id/scrollView">
 
-                <ScrollView
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/scrollView">
+                    android:id="@+id/scrollLinearLayout"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
 
-                    <LinearLayout
+                    <TextView
                         android:layout_width="match_parent"
-                        android:id="@+id/scrollLinearLayout"
-                        android:orientation="vertical"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="Overview"
-                            android:id="@+id/overviewTextView"
-                            android:textColor="@color/primaryText"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            android:layout_marginBottom="10dp" />
+                        android:layout_height="match_parent"
+                        android:text="@string/overview"
+                        android:id="@+id/overviewTextView"
+                        android:textColor="@color/primaryText"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="10dp" />
 
 
-                    </LinearLayout>
+                </LinearLayout>
 
-                </ScrollView>
+            </ScrollView>
 
-            </LinearLayout>
+        </LinearLayout>
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Invite A Friend"
-                android:id="@+id/inviteFriendButton"
-                android:layout_alignParentBottom="true"
-                android:background="@color/accent"
-                android:textColor="@color/icons"
-                android:textSize="15sp" />
-        </RelativeLayout>
-    </LinearLayout>
-</FrameLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Invite A Friend"
+            android:id="@+id/inviteFriendButton"
+            android:layout_alignParentBottom="true"
+            android:background="@color/accent"
+            android:textColor="@color/icons"
+            android:textSize="15sp" />
+    </RelativeLayout>
+</LinearLayout>

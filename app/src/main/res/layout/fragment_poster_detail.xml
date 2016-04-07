@@ -1,34 +1,35 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.epicodus.movietime.ui.PosterDetailFragment">
-
-=    <RelativeLayout
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context="com.epicodus.movietime.ui.PosterDetailFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/posterImageView">
+            android:id="@+id/posterImageView"
+            android:layout_above="@+id/buttonRow"
+            android:contentDescription="@string/movie_poster">
         </ImageView>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true">
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/buttonRow">
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Set As Wallpaper"
+                android:text="@string/set_as_wallpaper"
                 android:id="@+id/setWallpaperButton"
+                android:background="@color/accent"
+                android:textColor="@color/icons"
+                android:textSize="15sp"
                 />
 
         </LinearLayout>
-
-
     </RelativeLayout>
 
-</FrameLayout>

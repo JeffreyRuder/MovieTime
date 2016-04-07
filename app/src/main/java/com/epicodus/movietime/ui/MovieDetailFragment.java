@@ -10,27 +10,17 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.CursorAdapter;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.epicodus.movietime.R;
-import com.epicodus.movietime.adapters.MovieListAdapter;
-import com.epicodus.movietime.adapters.MoviePagerAdapter;
 import com.epicodus.movietime.services.SearchService;
 import com.squareup.picasso.Picasso;
-
-import org.apache.commons.lang3.ObjectUtils;
-
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -63,15 +53,14 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mMovie = (MovieDb) getArguments().getSerializable("movie");
-        new GetImagesTask().execute(mMovie);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_movie_detail, container, false);
         ButterKnife.bind(this, view);
+        new GetImagesTask().execute(mMovie);
         Resources res = view.getContext().getResources();
-
         mMovieNameTextView.setText(mMovie.getTitle());
         if (mMovie.getBackdropPath() != null) {
             Picasso.with(view.getContext()).load(String.format(res.getString(R.string.backdrop_url), mMovie.getBackdropPath())).fit().centerCrop().into(mMovieBackdropImageView);
@@ -154,7 +143,6 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
 
         @Override
         protected void onPostExecute(final MovieImages result) {
-            int size = result.getPosters().size();
             mImages = result;
             if (result.getPosters().size() > 0) {
                 mPosterButton.setVisibility(View.VISIBLE);

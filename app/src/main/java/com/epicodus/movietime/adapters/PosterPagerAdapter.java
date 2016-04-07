@@ -26,7 +26,6 @@ public class PosterPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        Log.d("POSTER", mImages.getPosters().get(position).getFilePath());
         return PosterDetailFragment.newInstance(mImages.getPosters().get(position));
     }
 

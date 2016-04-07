@@ -1,18 +1,14 @@
 package com.epicodus.movietime.ui;
 
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 import com.epicodus.movietime.R;
-import com.epicodus.movietime.adapters.MoviePagerAdapter;
 import com.epicodus.movietime.adapters.PosterPagerAdapter;
-
-import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import info.movito.themoviedbapi.model.MovieDb;
 import info.movito.themoviedbapi.model.MovieImages;
 
 public class MoviePosterActivity extends AppCompatActivity {
@@ -31,9 +27,7 @@ public class MoviePosterActivity extends AppCompatActivity {
         Bundle posterBundle = getIntent().getBundleExtra("PosterBundle");
         mImages = (MovieImages) posterBundle.getSerializable("MovieImages");
 
-        int startingPosition = 0;
         adapterViewPager = new PosterPagerAdapter(getSupportFragmentManager(), mImages);
         mViewPager.setAdapter(adapterViewPager);
-        mViewPager.setCurrentItem(0);
     }
 }
