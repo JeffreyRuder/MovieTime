@@ -85,17 +85,17 @@ public class MovieListActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(List<MovieDb> result) {
-            if (result.size() == 0) {
-                Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.no_results), Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.CENTER, 0, 0);
-                toast.show();
-            }
 
             if (mAdapter != null) {
                 //not the first time getting movies, so add to the existing adapter
                 mAdapter.addMovies(result);
             } else {
                 //first time getting movies
+                if (result.size() == 0) {
+                    Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.no_results), Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+                }
                 mAdapter = new MovieListAdapter(getApplicationContext(), result);
                 mRecyclerView.setAdapter(mAdapter);
             }
