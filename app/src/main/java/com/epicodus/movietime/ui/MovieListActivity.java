@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.epicodus.movietime.R;
 import com.epicodus.movietime.adapters.MovieListAdapter;
@@ -83,6 +85,12 @@ public class MovieListActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(List<MovieDb> result) {
+            if (result.size() == 0) {
+                Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.no_results), Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
+            }
+
             if (mAdapter != null) {
                 //not the first time getting movies, so add to the existing adapter
                 mAdapter.addMovies(result);

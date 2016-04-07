@@ -1,14 +1,15 @@
 package com.epicodus.movietime.ui;
 
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.ContactsContract;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,11 +18,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.epicodus.movietime.R;
 import com.epicodus.movietime.services.SearchService;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Locale;
 
 import butterknife.Bind;
@@ -35,7 +40,8 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
     @Bind(R.id.releaseDateTextView) TextView mReleaseDateTextView;
     @Bind(R.id.ratingTextView) TextView mRatingTextView;
     @Bind(R.id.overviewTextView) TextView mOverviewTextView;
-    @Bind(R.id.inviteFriendButton) Button mInviteFriendButton;
+    @Bind(R.id.shareButton) Button mShareButton;
+    @Bind(R.id.netflixButton) Button mNetflixButton;
     @Bind(R.id.scrollLinearLayout) LinearLayout mScrollLinearLayout;
     @Bind(R.id.posterButton) Button mPosterButton;
 
@@ -78,61 +84,38 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
             mRatingTextView.setVisibility(View.INVISIBLE);
         }
         mOverviewTextView.setText(mMovie.getOverview());
-        mInviteFriendButton.setOnClickListener(this);
 
-        mPosterButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), MoviePosterActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("MovieImages", mImages);
-                intent.putExtra("PosterBundle", bundle);
-                startActivity(intent);
-            }
-        });
+        mShareButton.setOnClickListener(this);
+        mNetflixButton.setOnClickListener(this);
+        mPosterButton.setOnClickListener(this);
 
         return view;
     }
 
     @Override
     public void onClick(View view) {
-        if (view == mInviteFriendButton) {
-            Intent pickContactIntent = new Intent(Intent.ACTION_PICK, Uri.parse("content://contacts"));
-            pickContactIntent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
-            startActivityForResult(pickContactIntent, PICK_CONTACT_REQUEST);
+        if (view == mShareButton) {
+            new ShareImageTask().execute(mMovieBackdropImageView);
         }
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == PICK_CONTACT_REQUEST) {
-            if (resultCode == Activity.RESULT_OK) {
-                Uri contactUri = data.getData();
-                String[] projection = {ContactsContract.CommonDataKinds.Phone.NUMBER};
-
-                try {
-                    Cursor cursor = this.getContext().getContentResolver().query(contactUri, projection, null, null, null);
-                    cursor.moveToFirst();
-
-                    int column = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
-                    String number = cursor.getString(column);
-                    cursor.close();
-                    sendSMS(this.getView(), number, mMovie);
-                } catch (NullPointerException npe) {
-                    npe.printStackTrace();
-                }
-
+        if (view == mNetflixButton) {
+            try {
+                Intent intent = new Intent(Intent.ACTION_SEARCH);
+                intent.setClassName("com.netflix.mediaclient", "com.netflix.mediaclient.ui.search.SearchActivity");
+                intent.putExtra("query", mMovie.getTitle());
+                startActivity(intent);
+            }
+            catch(Exception e) {
+                Toast.makeText(getContext(), "Please install the Netflix app!", Toast.LENGTH_SHORT).show();
             }
         }
-    }
 
-    public void sendSMS(View v, String number, MovieDb movie) {
-        String movieUrl = "https://www.themoviedb.org/movie/" + movie.getId();
-        Uri uri = Uri.parse("smsto:" + number);
-        Intent intent = new Intent(Intent.ACTION_SENDTO, uri);
-        intent.putExtra("sms_body",
-                "Let's go see " + movie.getTitle() + "! " + movieUrl);
-        startActivity(intent);
+        if (view == mPosterButton) {
+            Intent intent = new Intent(getActivity(), MoviePosterActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("MovieImages", mImages);
+            intent.putExtra("PosterBundle", bundle);
+            startActivity(intent);
+        }
     }
 
     private class GetImagesTask extends AsyncTask<MovieDb, Void, MovieImages> {
@@ -150,4 +133,53 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
             }
         }
     }
+
+    private class ShareImageTask extends AsyncTask<ImageView, Void, Uri> {
+        @Override
+        protected Uri doInBackground(ImageView... params) {
+            return getLocalBitmapUri(params[0]);
+        }
+
+        @Override
+        protected void onPostExecute(final Uri result) {
+            Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            intent.putExtra(Intent.EXTRA_TEXT, mMovie.getTitle());
+            if (result != null) {
+                intent.putExtra(Intent.EXTRA_STREAM, result);
+                intent.setType("image/*");
+            } else {
+                intent.putExtra(Intent.EXTRA_TEXT,
+                        String.format(getResources().getString(R.string.backdrop_url), mMovie.getPosterPath()));
+                intent.setType("text/plain");
+            }
+            startActivity(Intent.createChooser(intent, getString(R.string.how_to_share)));
+        }
+    }
+
+    public Uri getLocalBitmapUri(ImageView imageView) {
+        // Extract Bitmap from ImageView drawable
+        Drawable drawable = imageView.getDrawable();
+        Bitmap bmp = null;
+        if (drawable instanceof BitmapDrawable){
+            bmp = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+        } else {
+            return null;
+        }
+        // Store image to default external storage directory
+        Uri bmpUri = null;
+        try {
+            // Use methods on Context to access package-specific directories on external storage.
+            // This way, you don't need to request external read/write permission.
+            File file =  new File(getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES), "share_image_" + System.currentTimeMillis() + ".png");
+            FileOutputStream out = new FileOutputStream(file);
+            bmp.compress(Bitmap.CompressFormat.PNG, 90, out);
+            out.close();
+            bmpUri = Uri.fromFile(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return bmpUri;
+    }
+
 }

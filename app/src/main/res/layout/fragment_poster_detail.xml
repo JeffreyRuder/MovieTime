@@ -9,8 +9,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/posterImageView"
-            android:layout_above="@+id/buttonRow"
-            android:contentDescription="@string/movie_poster">
+            android:contentDescription="@string/movie_poster"
+            android:layout_above="@+id/buttonRow">
         </ImageView>
 
         <LinearLayout
@@ -26,7 +26,6 @@
                 android:text="@string/set_as_wallpaper"
                 android:id="@+id/setWallpaperButton"
                 android:background="@color/accent"
-                android:textColor="@color/icons"
                 android:textSize="15sp"
                 />
 

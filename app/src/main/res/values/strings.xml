@@ -15,9 +15,13 @@
     <string name="posters">Posters</string>
 
     <string name="search_movies">Search movies…</string>
+    <string name="no_results">No movies found, please try another search.</string>
     <string name="downloading_image">Downloading image…</string>
     <string name="failed_wallpaper">Failed to set image as wallpaper.</string>
+    <string name="how_to_share">How do you want to share?</string>
 
     <string name="saved_wallpaper">Successfully Set as Wallpaper</string>
+    <string name="search_netflix">Search Netflix</string>
+    <string name="share_button">Share Movie</string>
 
 </resources>
