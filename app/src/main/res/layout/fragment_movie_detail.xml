@@ -24,46 +24,63 @@
         android:paddingRight="10dp"
         android:paddingBottom="20dp">
 
-        <TextView
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/movie_title"
-            android:id="@+id/movieNameTextView"
+            android:id="@+id/linearLayout"
             android:layout_alignParentStart="true"
-            android:textSize="16sp"
-            android:textColor="@color/primaryDark"
-            android:textStyle="bold" />
+            android:layout_toStartOf="@+id/frameLayout">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/numerical_rating"
-            android:id="@+id/ratingTextView"
-            android:textColor="@color/accent"
-            android:textStyle="bold"
-            android:layout_below="@+id/releaseDateTextView" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/movie_title"
+                android:id="@+id/movieNameTextView"
+                android:layout_alignParentStart="true"
+                android:textSize="16sp"
+                android:textColor="@color/primaryDark"
+                android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/release_date"
-            android:id="@+id/releaseDateTextView"
-            android:layout_below="@+id/movieNameTextView"
-            android:layout_alignParentStart="true"
-            android:textColor="@color/secondaryText"
-            android:textStyle="italic" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/release_date"
+                android:id="@+id/releaseDateTextView"
+                android:layout_below="@+id/movieNameTextView"
+                android:layout_alignParentStart="true"
+                android:textColor="@color/secondaryText"
+                android:textStyle="italic" />
 
-        <Button
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/numerical_rating"
+                android:id="@+id/ratingTextView"
+                android:textColor="@color/accent"
+                android:textStyle="bold"
+                android:layout_below="@+id/releaseDateTextView" />
+
+        </RelativeLayout>
+
+        <FrameLayout
             android:layout_width="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_height="wrap_content"
-            android:text="@string/posters"
-            android:layout_margin="6dp"
-            android:id="@+id/posterButton"
-            android:backgroundTint="@color/accent"
-            android:enabled="false"
-            android:visibility="gone"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_centerVertical="true"
+            android:id="@+id/frameLayout">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/posters"
+                android:layout_margin="6dp"
+                android:id="@+id/posterButton"
+                android:backgroundTint="@color/accent"
+                android:enabled="false"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:visibility="gone" />
+        </FrameLayout>
     </RelativeLayout>
 
     <RelativeLayout
