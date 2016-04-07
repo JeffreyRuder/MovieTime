@@ -16,6 +16,8 @@
 
     <string name="search_movies">Search movies…</string>
     <string name="downloading_image">Downloading image…</string>
+    <string name="failed_wallpaper">Failed to set image as wallpaper.</string>
+
     <string name="saved_wallpaper">Successfully Set as Wallpaper</string>
 
 </resources>

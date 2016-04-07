@@ -1,5 +1,6 @@
 package com.epicodus.movietime.ui;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.app.WallpaperManager;
 import android.content.res.Resources;
@@ -88,6 +89,12 @@ public class PosterDetailFragment extends Fragment implements View.OnClickListen
         @Override
         public void onBitmapFailed(Drawable errorDrawable) {
             mProgressDialog.dismiss();
+            new AlertDialog.Builder(getContext())
+                    .setTitle("Error")
+                    .setMessage(getString(R.string.failed_wallpaper))
+                    .setPositiveButton(android.R.string.ok, null)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
         }
 
         @Override
