@@ -1,12 +1,10 @@
 package com.epicodus.movietime.ui;
 
+import android.app.ProgressDialog;
 import android.app.WallpaperManager;
-import android.content.Context;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,27 +12,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.epicodus.movietime.R;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 import java.io.IOException;
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import info.movito.themoviedbapi.model.Artwork;
-import info.movito.themoviedbapi.model.MovieDb;
-import info.movito.themoviedbapi.model.MovieImages;
 
 public class PosterDetailFragment extends Fragment implements View.OnClickListener {
     @Bind(R.id.posterImageView) ImageView mPosterImageView;
     @Bind(R.id.setWallpaperButton) Button mSetAsWallpaperButton;
 
     private Artwork mArtwork;
+    private ProgressDialog mProgressDialog;
 
     public static PosterDetailFragment newInstance(Artwork image) {
         PosterDetailFragment posterDetailFragment = new PosterDetailFragment();
@@ -47,9 +42,8 @@ public class PosterDetailFragment extends Fragment implements View.OnClickListen
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         mArtwork = (Artwork) getArguments().getSerializable("image");
-
+        initializeProgressDialog();
     }
 
     @Override
@@ -57,23 +51,6 @@ public class PosterDetailFragment extends Fragment implements View.OnClickListen
         if (v == mSetAsWallpaperButton) {
             Resources res = getResources();
             setWallpaper(String.format(res.getString(R.string.poster_url_big), mArtwork.getFilePath()));
-//
-//            try {
-//                Bitmap result = Picasso.with(getContext())
-//                        .load(String.format(res.getString(R.string.poster_url_big), mArtwork.getFilePath()))
-//                        .get();
-//
-//                WallpaperManager wallpaperManager = WallpaperManager.getInstance(getContext());
-//
-//                wallpaperManager.setBitmap(result);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-
-
-
-//            Intent setWallpaperIntent = new Intent(wallpaperManager.getCropAndSetWallpaperIntent(Uri.parse(String.format(res.getString(R.string.poster_url_big), mArtwork.getFilePath()))));
-//            startActivity(setWallpaperIntent);
         }
     }
 
@@ -84,7 +61,6 @@ public class PosterDetailFragment extends Fragment implements View.OnClickListen
         ButterKnife.bind(this, view);
 
         mSetAsWallpaperButton.setOnClickListener(this);
-
         Resources res = getResources();
 
         Picasso.with(getContext())
@@ -102,6 +78,8 @@ public class PosterDetailFragment extends Fragment implements View.OnClickListen
             WallpaperManager wallpaperManager = WallpaperManager.getInstance(getContext());
             try {
                 wallpaperManager.setBitmap(bitmap);
+                mProgressDialog.dismiss();
+                Toast.makeText(getContext(), getString(R.string.saved_wallpaper), Toast.LENGTH_LONG).show();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -109,12 +87,12 @@ public class PosterDetailFragment extends Fragment implements View.OnClickListen
 
         @Override
         public void onBitmapFailed(Drawable errorDrawable) {
-
+            mProgressDialog.dismiss();
         }
 
         @Override
         public void onPrepareLoad(Drawable placeHolderDrawable) {
-
+            mProgressDialog.show();
         }
     };
 
@@ -123,9 +101,17 @@ public class PosterDetailFragment extends Fragment implements View.OnClickListen
     }
 
     @Override
-    public void onDestroy() {  // could be in onPause or onStop
+    public void onDestroy() {
         Picasso.with(getContext()).cancelRequest(target);
         super.onDestroy();
     }
+
+    private void initializeProgressDialog() {
+        mProgressDialog = new ProgressDialog(getContext());
+        mProgressDialog.setTitle("Loading");
+        mProgressDialog.setMessage(getString(R.string.downloading_image));
+        mProgressDialog.setCancelable(false);
+    }
+
 
 }

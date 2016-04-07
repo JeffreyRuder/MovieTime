@@ -15,7 +15,6 @@ import info.movito.themoviedbapi.model.MovieDb;
 
 public class MovieDetailActivity extends AppCompatActivity {
     @Bind(R.id.viewPager) ViewPager mViewPager;
-    private MoviePagerAdapter adapterViewPager;
     ArrayList<MovieDb> mMovies = new ArrayList<>();
 
     @Override
@@ -28,7 +27,7 @@ public class MovieDetailActivity extends AppCompatActivity {
         mMovies = (ArrayList<MovieDb>) movieBundle.getSerializable("movies");
 
         int startingPosition = Integer.parseInt(getIntent().getStringExtra("position"));
-        adapterViewPager = new MoviePagerAdapter(getSupportFragmentManager(), mMovies);
+        MoviePagerAdapter adapterViewPager = new MoviePagerAdapter(getSupportFragmentManager(), mMovies);
         mViewPager.setAdapter(adapterViewPager);
         mViewPager.setCurrentItem(startingPosition);
     }

@@ -22,6 +22,8 @@ import com.epicodus.movietime.R;
 import com.epicodus.movietime.services.SearchService;
 import com.squareup.picasso.Picasso;
 
+import java.util.Locale;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import info.movito.themoviedbapi.model.MovieDb;
@@ -71,7 +73,7 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
         }
         mReleaseDateTextView.setText(mMovie.getReleaseDate());
         if (mMovie.getVoteCount() > 0) {
-            mRatingTextView.setText(String.format("%.2f", mMovie.getVoteAverage()/2) + "/5");
+            mRatingTextView.setText(String.format(Locale.US, "%.2f", mMovie.getVoteAverage()/2) + "/5");
         } else {
             mRatingTextView.setVisibility(View.INVISIBLE);
         }
@@ -126,7 +128,6 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
 
     public void sendSMS(View v, String number, MovieDb movie) {
         String movieUrl = "https://www.themoviedb.org/movie/" + movie.getId();
-
         Uri uri = Uri.parse("smsto:" + number);
         Intent intent = new Intent(Intent.ACTION_SENDTO, uri);
         intent.putExtra("sms_body",
@@ -137,8 +138,7 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
     private class GetImagesTask extends AsyncTask<MovieDb, Void, MovieImages> {
         @Override
         protected MovieImages doInBackground(MovieDb... params) {
-            MovieImages images = SearchService.getImages(params[0].getId());
-            return images;
+            return SearchService.getImages(params[0].getId());
         }
 
         @Override

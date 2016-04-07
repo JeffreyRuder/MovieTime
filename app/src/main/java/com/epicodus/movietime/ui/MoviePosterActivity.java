@@ -15,7 +15,6 @@ public class MoviePosterActivity extends AppCompatActivity {
 
     @Bind(R.id.viewPager)
     ViewPager mViewPager;
-    private PosterPagerAdapter adapterViewPager;
     MovieImages mImages;
 
     @Override
@@ -27,7 +26,7 @@ public class MoviePosterActivity extends AppCompatActivity {
         Bundle posterBundle = getIntent().getBundleExtra("PosterBundle");
         mImages = (MovieImages) posterBundle.getSerializable("MovieImages");
 
-        adapterViewPager = new PosterPagerAdapter(getSupportFragmentManager(), mImages);
+        PosterPagerAdapter adapterViewPager = new PosterPagerAdapter(getSupportFragmentManager(), mImages);
         mViewPager.setAdapter(adapterViewPager);
     }
 }

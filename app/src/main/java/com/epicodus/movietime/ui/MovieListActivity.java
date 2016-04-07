@@ -64,6 +64,7 @@ public class MovieListActivity extends AppCompatActivity {
                     }
                 }
                 if (!isLoading && (totalItemCount - visibleItemCount) <= (firstVisibleItem + visibleThreshold)) {
+                    //we need to get more movies
                     pageCounter ++;
                     TaskParams params = new TaskParams(searchQuery, pageCounter);
                     new GetMovieTask().execute(params);
@@ -77,14 +78,13 @@ public class MovieListActivity extends AppCompatActivity {
     private class GetMovieTask extends AsyncTask<TaskParams, Void, List<MovieDb>> {
         @Override
         protected List<MovieDb> doInBackground(TaskParams... params) {
-            List<MovieDb> movies = SearchService.movieSearch(params[0].query, 0, params[0].page);
-            return movies;
+            return SearchService.movieSearch(params[0].query, 0, params[0].page);
         }
 
         @Override
         protected void onPostExecute(List<MovieDb> result) {
             if (mAdapter != null) {
-                //not the first time getting movies
+                //not the first time getting movies, so add to the existing adapter
                 mAdapter.addMovies(result);
             } else {
                 //first time getting movies
@@ -96,6 +96,7 @@ public class MovieListActivity extends AppCompatActivity {
         }
     }
 
+    //wrapper class for giving both query and page to GetMovieTask
     private static class TaskParams {
         String query;
         int page;
