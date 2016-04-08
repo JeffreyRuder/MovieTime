@@ -105,7 +105,7 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
                 startActivity(intent);
             }
             catch(Exception e) {
-                Toast.makeText(getContext(), "Please install the Netflix app!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getString(R.string.install_netflix), Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -121,7 +121,7 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
     private class GetImagesTask extends AsyncTask<MovieDb, Void, MovieImages> {
         @Override
         protected MovieImages doInBackground(MovieDb... params) {
-            return SearchService.getImages(params[0].getId());
+            return SearchService.getImages(params[0].getId(), getContext());
         }
 
         @Override

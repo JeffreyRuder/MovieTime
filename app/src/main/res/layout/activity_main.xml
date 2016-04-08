@@ -10,4 +10,22 @@
         android:layout_height="match_parent"
         android:id="@+id/backgroundImageView" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/buttonRow">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/about"
+            android:id="@+id/aboutButton"
+            android:background="@color/accent"
+            android:textSize="15sp"
+            />
+
+    </LinearLayout>
+
 </RelativeLayout>

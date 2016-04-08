@@ -31,15 +31,10 @@ public class PosterPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        if (mImages.getPosters().size() > 20) {
-            return 20;
+        if (mImages.getPosters().size() > 18) {
+            return 18;
         } else {
             return mImages.getPosters().size();
         }
-    }
-
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return "";
     }
 }

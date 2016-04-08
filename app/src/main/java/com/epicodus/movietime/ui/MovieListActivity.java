@@ -80,7 +80,7 @@ public class MovieListActivity extends AppCompatActivity {
     private class GetMovieTask extends AsyncTask<TaskParams, Void, List<MovieDb>> {
         @Override
         protected List<MovieDb> doInBackground(TaskParams... params) {
-            return SearchService.movieSearch(params[0].query, 0, params[0].page);
+            return SearchService.movieSearch(params[0].query, 0, params[0].page, getApplicationContext());
         }
 
         @Override
