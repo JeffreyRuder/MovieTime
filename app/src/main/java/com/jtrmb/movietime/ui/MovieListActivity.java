@@ -1,7 +1,10 @@
 package com.jtrmb.movietime.ui;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,6 +27,7 @@ public class MovieListActivity extends AppCompatActivity {
 
     private MovieListAdapter mAdapter;
     private LinearLayoutManager mManager = new LinearLayoutManager(MovieListActivity.this);
+    private ProgressDialog mLoadingProgressDialog;
 
     private int previousTotal = 0;
     private boolean isLoading = true;
@@ -41,6 +45,8 @@ public class MovieListActivity extends AppCompatActivity {
         Intent intent = getIntent();
         final String searchQuery = intent.getStringExtra("searchQuery");
         TaskParams params = new TaskParams(searchQuery, pageCounter);
+        initializeProgressDialog();
+        mLoadingProgressDialog.show();
 
         new GetMovieTask().execute(params);
         mRecyclerView.setLayoutManager(mManager);
@@ -60,7 +66,7 @@ public class MovieListActivity extends AppCompatActivity {
                     }
                 }
                 if (!isLoading && (totalItemCount - visibleItemCount) <= (firstVisibleItem + visibleThreshold)) {
-                    //we need to get more movies
+                    //need to get more movies
                     pageCounter ++;
                     TaskParams params = new TaskParams(searchQuery, pageCounter);
                     new GetMovieTask().execute(params);
@@ -85,10 +91,9 @@ public class MovieListActivity extends AppCompatActivity {
                 mAdapter.addMovies(result);
             } else {
                 //first time getting movies
+                mLoadingProgressDialog.dismiss();
                 if (result.size() == 0) {
-                    Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.no_results), Toast.LENGTH_LONG);
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.show();
+                    showFailureDialog("Please try another search.");
                 }
                 mAdapter = new MovieListAdapter(getApplicationContext(), result);
                 mRecyclerView.setAdapter(mAdapter);
@@ -107,5 +112,27 @@ public class MovieListActivity extends AppCompatActivity {
             this.query = query;
             this.page = page;
         }
+    }
+
+    private void initializeProgressDialog() {
+        mLoadingProgressDialog = new ProgressDialog(this);
+        mLoadingProgressDialog.setTitle(getString(R.string.searching));
+        mLoadingProgressDialog.setMessage(getString(R.string.searching_for_movies));
+        mLoadingProgressDialog.setCancelable(false);
+    }
+
+    private void showFailureDialog(String message) {
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.no_results))
+                .setMessage(message)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(MovieListActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
     }
 }

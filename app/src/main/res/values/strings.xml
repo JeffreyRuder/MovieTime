@@ -24,7 +24,7 @@
     <string name="posters">Posters</string>
 
     <string name="search_movies">Search movies…</string>
-    <string name="no_results">No movies found, please try another search.</string>
+    <string name="no_results">No movies found</string>
     <string name="downloading_image">Downloading image…</string>
     <string name="failed_wallpaper">Failed to set image as wallpaper.</string>
     <string name="how_to_share">How do you want to share?</string>
@@ -41,5 +41,9 @@
     <string name="save">Save</string>
     <string name="their_posters_as_wallpaper">their posters as wallpaper</string>
     <string name="github_link">View the code on GitHub</string>
+    <string name="logo_for_tmdb">Logo for tMDB</string>
+
+    <string name="searching">Searching</string>
+    <string name="searching_for_movies">Searching for movies…</string>
 
 </resources>

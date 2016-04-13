@@ -3,7 +3,6 @@ package com.jtrmb.movietime.ui;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v4.view.MenuCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -53,8 +52,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ButterKnife.bind(this);
 
         MenuItem menuItem = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
-        mSearchView = searchView;
+        mSearchView = (SearchView) MenuItemCompat.getActionView(menuItem);
         mSearchView.setQueryHint(getString(R.string.search_movies));
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
