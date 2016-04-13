@@ -1,10 +1,9 @@
-package com.epicodus.movietime.services;
+package com.jtrmb.movietime.services;
 
 
 import android.content.Context;
-import android.util.Log;
 
-import com.epicodus.movietime.R;
+import com.jtrmb.movietime.R;
 
 import java.util.List;
 

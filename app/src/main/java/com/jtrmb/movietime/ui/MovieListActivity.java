@@ -1,29 +1,23 @@
-package com.epicodus.movietime.ui;
+package com.jtrmb.movietime.ui;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Gravity;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.epicodus.movietime.R;
-import com.epicodus.movietime.adapters.MovieListAdapter;
-import com.epicodus.movietime.services.SearchService;
+import com.jtrmb.movietime.R;
+import com.jtrmb.movietime.adapters.MovieListAdapter;
+import com.jtrmb.movietime.services.SearchService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import info.movito.themoviedbapi.TmdbMovies;
 import info.movito.themoviedbapi.model.MovieDb;
-import info.movito.themoviedbapi.model.config.TmdbConfiguration;
 
 public class MovieListActivity extends AppCompatActivity {
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;

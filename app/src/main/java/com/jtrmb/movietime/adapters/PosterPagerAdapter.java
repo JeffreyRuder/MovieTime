@@ -1,16 +1,11 @@
-package com.epicodus.movietime.adapters;
+package com.jtrmb.movietime.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.util.Log;
 
-import com.epicodus.movietime.ui.MovieDetailFragment;
-import com.epicodus.movietime.ui.PosterDetailFragment;
+import com.jtrmb.movietime.ui.PosterDetailFragment;
 
-import java.util.List;
-
-import info.movito.themoviedbapi.model.MovieDb;
 import info.movito.themoviedbapi.model.MovieImages;
 
 /**

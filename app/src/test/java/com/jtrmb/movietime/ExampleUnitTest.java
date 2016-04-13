@@ -1,4 +1,4 @@
-package com.epicodus.movietime;
+package com.jtrmb.movietime;
 
 import org.junit.Test;
 

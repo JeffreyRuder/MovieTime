@@ -4,8 +4,10 @@
     <string name="poster_url_big">http://image.tmdb.org/t/p/w500%s</string>
     <string name="backdrop_url">http://image.tmdb.org/t/p/w500%s</string>
 
-    <string name="app_name">Movie Time</string>
-    <string name="about">About Movie Time</string>
+    <string name="app_name">Movie Lookup</string>
+    <string name="about">About Movie Lookup</string>
+    <string name="tmdb_attribution">This product uses the TMDb API but is not endorsed or certified by TMDb.</string>
+    <string name="about_body">Movie Lookup is free and open source.</string>
 
     <string name="set_as_wallpaper">Set As Wallpaper</string>
     <string name="movie_poster">Movie Poster</string>
@@ -26,6 +28,12 @@
     <string name="saved_wallpaper">Successfully Set as Wallpaper</string>
     <string name="search_netflix">Search Netflix</string>
     <string name="share_button">Share Movie</string>
-    <string name="tmdb_attribution">This product uses the TMDb API but is not endorsed or certified by TMDb.</string>
+
+    <string name="search">Search</string>
+    <string name="for_movies_by_name">for movies by name</string>
+    <string name="share">Share</string>
+    <string name="the_movies_you_find">the movies you find</string>
+    <string name="save">Save</string>
+    <string name="their_posters_as_wallpaper">their posters as wallpaper</string>
 
 </resources>

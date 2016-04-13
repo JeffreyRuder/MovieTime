@@ -1,4 +1,4 @@
-package com.epicodus.movietime.adapters;
+package com.jtrmb.movietime.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,8 +12,8 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.epicodus.movietime.R;
-import com.epicodus.movietime.ui.MovieDetailActivity;
+import com.jtrmb.movietime.R;
+import com.jtrmb.movietime.ui.MovieDetailActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

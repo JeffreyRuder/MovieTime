@@ -1,4 +1,4 @@
-package com.epicodus.movietime.ui;
+package com.jtrmb.movietime.ui;
 
 import android.content.Context;
 import android.content.res.TypedArray;

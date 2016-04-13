@@ -8,13 +8,13 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@color/primaryLight"
-    tools:context="com.epicodus.movietime.ui.AboutActivity">
+    tools:context="com.jtrmb.movietime.ui.AboutActivity">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/aboutBottomRow"
-        android:text="Movie Time is open source. View the code on GitHub."/>
+        android:text="@string/about_body"/>
 
     <LinearLayout
         android:layout_width="match_parent"

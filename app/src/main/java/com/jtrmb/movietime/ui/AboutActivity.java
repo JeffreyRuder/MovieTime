@@ -1,4 +1,4 @@
-package com.epicodus.movietime.ui;
+package com.jtrmb.movietime.ui;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.epicodus.movietime.R;
+import com.jtrmb.movietime.R;
 import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;

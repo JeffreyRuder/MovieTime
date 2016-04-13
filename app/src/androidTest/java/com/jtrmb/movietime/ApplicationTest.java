@@ -1,4 +1,4 @@
-package com.epicodus.movietime;
+package com.jtrmb.movietime;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

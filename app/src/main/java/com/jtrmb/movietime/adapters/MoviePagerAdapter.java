@@ -1,11 +1,11 @@
-package com.epicodus.movietime.adapters;
+package com.jtrmb.movietime.adapters;
 
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.epicodus.movietime.ui.MovieDetailFragment;
+import com.jtrmb.movietime.ui.MovieDetailFragment;
 
 import java.util.List;
 

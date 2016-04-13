@@ -28,4 +28,100 @@
 
     </LinearLayout>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/searchLayout"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="24dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="50sp"
+            android:layout_alignParentEnd="true"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/search"
+            android:clickable="true"
+            android:onClick="onClick"
+            android:textColor="@color/icons"
+            android:id="@+id/tagSearchTextView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="-12dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/for_movies_by_name"
+            android:textColor="@color/icons"
+            android:layout_below="@id/tagSearchTextView"
+            android:id="@+id/subSearchTextView" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/searchLayout"
+        android:id="@+id/shareLayout"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="50sp"
+            android:layout_alignParentStart="true"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/share"
+            android:layout_marginStart="-6dp"
+            android:textColor="@color/icons"
+            android:id="@+id/tagShareTextView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="-12dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/the_movies_you_find"
+            android:layout_below="@id/tagShareTextView"
+            android:textColor="@color/icons"
+            android:id="@+id/subShareTextView" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/shareLayout"
+        android:id="@+id/saveLayout"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="50sp"
+            android:layout_alignParentEnd="true"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/save"
+            android:textColor="@color/icons"
+            android:id="@+id/tagSaveTextView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="-12dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/their_posters_as_wallpaper"
+            android:layout_below="@id/tagSaveTextView"
+            android:textColor="@color/icons"
+            android:id="@+id/subSaveTextView" />
+    </RelativeLayout>
+
 </RelativeLayout>

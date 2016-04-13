@@ -1,4 +1,4 @@
-package com.epicodus.movietime.ui;
+package com.jtrmb.movietime.ui;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -15,7 +15,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.epicodus.movietime.R;
+import com.jtrmb.movietime.R;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 

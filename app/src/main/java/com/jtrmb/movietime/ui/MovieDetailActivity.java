@@ -1,11 +1,11 @@
-package com.epicodus.movietime.ui;
+package com.jtrmb.movietime.ui;
 
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.epicodus.movietime.R;
-import com.epicodus.movietime.adapters.MoviePagerAdapter;
+import com.jtrmb.movietime.R;
+import com.jtrmb.movietime.adapters.MoviePagerAdapter;
 
 import java.util.ArrayList;
 

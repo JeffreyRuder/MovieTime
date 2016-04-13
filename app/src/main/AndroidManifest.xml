@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.epicodus.movietime">
+    package="com.jtrmb.movietime">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
@@ -11,7 +11,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.MainActivity"
+            android:name="com.jtrmb.movietime.ui.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,28 +21,28 @@
         </activity>
 
         <activity
-            android:name=".ui.AboutActivity"
+            android:name="com.jtrmb.movietime.ui.AboutActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.MainActivity" />
+                android:value="com.jtrmb.movietime.ui.MainActivity" />
         </activity>
 
         <activity
-            android:name=".ui.MovieListActivity"
+            android:name="com.jtrmb.movietime.ui.MovieListActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.MainActivity" />
+                android:value="com.jtrmb.movietime.ui.MainActivity" />
         </activity>
 
         <activity
-            android:name=".ui.MovieDetailActivity"
+            android:name="com.jtrmb.movietime.ui.MovieDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
 
         <activity
-            android:name=".ui.MoviePosterActivity"
+            android:name="com.jtrmb.movietime.ui.MoviePosterActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
 

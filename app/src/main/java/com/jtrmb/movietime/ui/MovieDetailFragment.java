@@ -1,4 +1,4 @@
-package com.epicodus.movietime.ui;
+package com.jtrmb.movietime.ui;
 
 
 import android.content.Intent;
@@ -20,8 +20,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.epicodus.movietime.R;
-import com.epicodus.movietime.services.SearchService;
+import com.jtrmb.movietime.R;
+import com.jtrmb.movietime.services.SearchService;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
