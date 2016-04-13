@@ -7,7 +7,12 @@
     <string name="app_name">Movie Lookup</string>
     <string name="about">About Movie Lookup</string>
     <string name="tmdb_attribution">This product uses the TMDb API but is not endorsed or certified by TMDb.</string>
-    <string name="about_body">Movie Lookup is free and open source.</string>
+    <string name="about_body">Movie Lookup is free and open source. This software is licensed under the MIT license.
+        \n\n&#169; 2016 Jeffrey Ruder and Midori Bowen
+        \n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+        \n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+        \n\nTHE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+    </string>
 
     <string name="set_as_wallpaper">Set As Wallpaper</string>
     <string name="movie_poster">Movie Poster</string>
@@ -35,5 +40,6 @@
     <string name="the_movies_you_find">the movies you find</string>
     <string name="save">Save</string>
     <string name="their_posters_as_wallpaper">their posters as wallpaper</string>
+    <string name="github_link">View the code on GitHub</string>
 
 </resources>

@@ -10,11 +10,20 @@
     android:background="@color/primaryLight"
     tools:context="com.jtrmb.movietime.ui.AboutActivity">
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/aboutBottomRow"
-        android:text="@string/about_body"/>
+        android:layout_marginBottom="@dimen/activity_vertical_margin">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/about_body"/>
+
+    </ScrollView>
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,11 +32,19 @@
         android:orientation="vertical"
         android:id="@+id/aboutBottomRow"
         >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/github_link"
+            android:clickable="true"
+            android:onClick="onClick"
+            android:textColor="@color/primaryDark"
+            android:id="@+id/githubLinkTextView"
+            android:layout_marginBottom="6dp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textAlignment="center"
             android:text="@string/tmdb_attribution"
             android:layout_marginBottom="6dp"/>
 
