@@ -45,5 +45,9 @@
 
     <string name="searching">Searching</string>
     <string name="searching_for_movies">Searching for movies…</string>
+    <string name="movie_poster_image">Movie Poster Image</string>
+    <string name="placeholder_text_movie_release_date">Movie Release Date</string>
+    <string name="placeholder_text_movie_title">Star Wars: Episode V - The Empire Strikes Back</string>
+    <string name="placeholder_text_overview_snippet">Overview Snippet...</string>
 
 </resources>
