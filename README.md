@@ -10,6 +10,10 @@ A movie information app that connects to the Movie Database API. Implements endl
 
 Android, Java, XML.
 
+## Download App
+
+Available on the [Google Play store](https://play.google.com/store/apps/details?id=com.jtrmb.movietime) as Movie Lookup.
+
 ## Setup
 
 Ensure you have Android Studio installed.
